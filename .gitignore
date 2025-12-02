@@ -1,0 +1,3 @@
+day_*/*.txt
+day_*/*.o
+day_*/main
