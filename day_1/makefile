@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -Wall -g
 TARGET = main
-SRCS = pt1.cpp
+SRCS = day1.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default rule to build and run the executable
