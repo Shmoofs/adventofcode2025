@@ -28,18 +28,16 @@ void pt2(std::ifstream &input) {
 	    if (strInput[0] == 'L') strInput[0] = '-';
 		if (strInput[0] == 'R') strInput[0] = '0';
 
-		current = current + std::stoi(strInput);
+		rotations = std::stoi(strInput);
 
-        while (current < 0) {
-        	current += 100;
-         	password += 1;
-        }
-        while (current > 99) {
-        	current -= 100;
-         	password += 1;
-        }
-        if (current == 0) {
-        	password += 1;
+        while (rotations != 0) {
+        	if(rotations < 0) {
+         		current -= 1;
+         		rotations += 1;
+         	} elif (rotations > 0) {
+          		current += 1;
+
+          }
         }
     }
     std::cout << password << '\n';
