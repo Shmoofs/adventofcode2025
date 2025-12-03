@@ -42,13 +42,12 @@ void pt2(std::ifstream &input) {
         long long firstId = std::stoll(match.str());
         match = *(++i);
         long long secondId = std::stoll(match.str());
-
+        std::cout << firstId << '-' << secondId << '\n';
         for(long long j = firstId; j <= secondId; j++) {
         	std::string s = std::to_string(j);
          	int strLen = s.length();
          	for(int k = strLen/2; k >= 0; k--) {
          		std::regex regexInner(s.substr(0, k));
-          		std::smatch mymatches;
            		auto beginInner = std::sregex_iterator(s.begin(), s.end(), regexInner);
              	auto endInner = std::sregex_iterator();
               	int matches = std::distance(beginInner, endInner);
