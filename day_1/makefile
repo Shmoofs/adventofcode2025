@@ -1,11 +1,11 @@
 CXX = g++
-CXXFLAGS = -Wall -g
+CXXFLAGS = -Wall -g -O3
 TARGET = main
-SRCS = day1.cpp
+SRCS = day3.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default rule to build and run the executable
-all: $(TARGET) run
+all: $(TARGET)
 
 # Rule to link object files into the target executable
 $(TARGET): $(OBJS)
@@ -17,8 +17,8 @@ $(TARGET): $(OBJS)
 
 # Rule to run the executable
 run: $(TARGET)
-	$(TARGET)
+	./$(TARGET) input.txt
 
 # Clean rule to remove generated files
 clean:
-	rm $(OBJS)
+	rm -f $(OBJS) $(TARGET)

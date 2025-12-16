@@ -17,7 +17,7 @@ $(TARGET): $(OBJS)
 
 # Rule to run the executable
 run: $(TARGET)
-	./$(TARGET)
+	./$(TARGET) input.txt
 
 # Clean rule to remove generated files
 clean:
