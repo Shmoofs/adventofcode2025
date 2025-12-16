@@ -1,25 +1,44 @@
 #include <fstream>
 #include <iostream>
+#include <cmath>
 
-void pt1(std::ifstream &input) {
-	char ch;
-    int max1 = 0;
-    int max2 = 0;
-    int password = 0;
+long generalSolution(std::ifstream &input, int digits) {
+    std::string strInput{};
+    long password = 0;
 
-    while (input.get(ch)) {
-    	if (ch == '\n' || ch == '\0') {
-     		password += (max1 * 10) + max2;
-       		max1 = 0;
-         	max2 = 0;
-     	}
-     	if (ch >= max1) {
-      		max1 = max2;
-      		max2 = ch;
-      	}
+    while (std::getline(input, strInput)) {
+        int index = 0;
+        int length = strInput.length();
+
+        for(int times = digits-1; times >= 0; times--){
+            long max = 0;
+
+            for(int i = index; i < length-times; i++) {
+                // The - '0' is there because the char digits
+                // start at '0' which is usually, but not always, 48
+                if( (strInput[i] - '0') > max) {
+                    max = strInput[i] - '0';
+                    index = i+1;
+                }
+                if (strInput[i] == '9')
+                    break;
+                // No need to keep looping
+            }
+            password += max * pow(10, times);
+        }
     }
 
+    return password;
+}
+
+void pt1(std::ifstream &input) {
+    long password = generalSolution(input, 2);
     std::cout << "Part 1:" << password << '\n';
+}
+
+void pt2(std::ifstream &input) {
+    long password = generalSolution(input, 12);
+    std::cout << "Part 2:" << password << '\n';
 }
 
 
@@ -33,14 +52,14 @@ int main() {
     pt1(inf1);
     inf1.close();
 
-    // // Part 2
-    // std::ifstream inf2{ "input.txt" };
-    // if (!inf2) {
-    //     std::cerr << "Uh oh, the file couldn't be opened for reading\n";
-    //     return 1;
-    // }
-    // pt2(inf2);
-    // inf2.close();
+    // Part 2
+    std::ifstream inf2{ "input.txt" };
+    if (!inf2) {
+        std::cerr << "Uh oh, the file couldn't be opened for reading\n";
+        return 1;
+    }
+    pt2(inf2);
+    inf2.close();
 
     return 0;
 }
